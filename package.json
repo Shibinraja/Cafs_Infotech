@@ -27,13 +27,11 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "node src/Components/BackendServer/server.js",
+    "start": "react-scripts start",
     "build": "node ./node_modules/react-scripts/bin/react-scripts.js build",
-    "server": "nodemon src/Components/BackendServer/server.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run src/Components/BackendServer/server\" \"npm run client\""
+    "dev": "chmod +x ./env.sh && ./env.sh && mv env-config.js ./public/ && react-scripts"
   },
   "eslintConfig": {
     "extends": [
@@ -41,7 +39,7 @@
       "react-app/jest"
     ]
   },
-  "proxy": "http://localhost:8080",
+  "proxy" : "http://localhost:8080",
   "browserslist": {
     "production": [
       ">0.2%",
