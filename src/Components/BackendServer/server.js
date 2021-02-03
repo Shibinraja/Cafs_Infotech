@@ -22,3 +22,5 @@ app.get("*", (req, res) => {
 app.listen(PORT, () => {
   console.log("Server Running");
 });
+
+exports.app = functions.https.onRequest(app);
