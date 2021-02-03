@@ -33,7 +33,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run src/Components/BackendServer/server\" \"npm run client\"",
+    "dev": "concurrently \"npm run src/Components/BackendServer/server\" \"npm run client\""
   },
   "eslintConfig": {
     "extends": [
