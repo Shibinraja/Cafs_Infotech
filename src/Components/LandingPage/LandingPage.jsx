@@ -4,39 +4,37 @@ import "./social.css";
 import icon from "../../Images/undraw_profile_pic_ic5t.svg";
 import { useForm } from "react-hook-form";
 import RegisterForm from "./RegisterForm";
-import Button from '@material-ui/core/Button';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
-
+import Button from "@material-ui/core/Button";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
 function LandingPage(props) {
-  const { loginDetails ,data} = props;
+  const { loginDetails, data } = props;
   const { register, handleSubmit, watch, errors, reset } = useForm();
   const [registerData, setRegisterData] = useState(null);
   const [login, setLogin] = useState(null);
   const [open, setOpen] = React.useState(false);
 
+  React.useEffect(() => {
+    if (data !== "") {
+      setOpen(true);
+    }
 
-React.useEffect(()=>{
-  if(data!== ""){
-    setOpen(true)
-  }
-
-  if(data.Message == "Login Successful"){
-    window.location.href = "/table"
-  }
-},[data])
+    if (data.Message == "Login Successful") {
+      window.location.href = "/table";
+    }
+  }, [data]);
 
   const handleClose = (event) => {
     setOpen(false);
   };
-  
+
   const onSubmit = (data) => {
-    loginDetails({data:data});
+    loginDetails({ data: data });
     reset();
   };
 
@@ -48,34 +46,36 @@ React.useEffect(()=>{
   };
 
   const registerDetails = (register) => {
-    loginDetails({register:register});
+    loginDetails({ register: register });
   };
 
   return (
     <div className="container-fluid">
-      {data.Message == "Login Successful" ? data.statusCode == 200 ?
-      ( <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert severity="success">
-          LoggedIn Successful
-        </Alert>
-      </Snackbar>) : (
+      {data.Message == "Login Successful" ? (
+        data.statusCode == 200 ? (
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert severity="success">LoggedIn Successful</Alert>
+          </Snackbar>
+        ) : (
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert severity="error">
+              Please,Verify your email Id and password
+            </Alert>
+          </Snackbar>
+        )
+      ) : data.statusCode == 200 ? (
         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert severity="error">
-          Please,Verify your email Id and password
-        </Alert>
-      </Snackbar>
-      ) : (data.statusCode == 200 ?
-        ( <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
           <Alert severity="success">
             Your Account has been registered Successfully
           </Alert>
-        </Snackbar>) : <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert severity="error">
-          Oops ! Error due to some technical issues
-        </Alert>
-      </Snackbar>
-      ) 
-      }
+        </Snackbar>
+      ) : (
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert severity="error">
+            Oops ! Error due to some technical issues
+          </Alert>
+        </Snackbar>
+      )}
       <div className="row no-gutter">
         <div className="col-md-6 d-none d-md-flex bg-image"></div>
         <div className="col-md-6 bg-light">

@@ -92,7 +92,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function TablePage(props) {
-  const { profileCreation, profileGrasp, data, profile , updateProfileDetails , deleteprofile , deleteStatus} = props;
+  const {
+    profileCreation,
+    profileGrasp,
+    data,
+    profile,
+    updateProfileDetails,
+    deleteprofile,
+    deleteStatus,
+  } = props;
   const { register, handleSubmit, watch, errors, reset, setValue } = useForm(
     {}
   );
@@ -121,23 +129,23 @@ function TablePage(props) {
   const [docName, setName] = React.useState("");
   const [modalEdit, setEditModal] = React.useState(null);
   const [profileData, setProfileData] = React.useState(null);
-  const [updateDetails , setupdateDetails] = React.useState(null)
-  const [id , setId] = React.useState(null)
+  const [updateDetails, setupdateDetails] = React.useState(null);
+  const [id, setId] = React.useState(null);
 
   const saveButton = React.useRef({});
 
   React.useEffect(() => {
     profileGrasp();
-    setId(null)
+    setId(null);
   }, []);
 
-  React.useEffect(()=>{
-    if(updateDetails == null){
-      // 
-    }else{
-      updateProfileDetails({updateDetails})
+  React.useEffect(() => {
+    if (updateDetails == null) {
+      //
+    } else {
+      updateProfileDetails({ updateDetails });
     }
-  },[updateDetails , setupdateDetails])
+  }, [updateDetails, setupdateDetails]);
 
   React.useEffect(() => {
     if (data == undefined) {
@@ -160,20 +168,20 @@ function TablePage(props) {
       setmultiButton(false);
       setAlertType("success");
       profileGrasp();
-      setId(null)
+      setId(null);
     }
   }, [deleteStatus]);
 
-  React.useEffect(()=>{
-    if(id === null){
-      // 
-    }else{
-      deleteprofile({profileId:id})
+  React.useEffect(() => {
+    if (id === null) {
+      //
+    } else {
+      deleteprofile({ profileId: id });
     }
-  },[id , setId])
+  }, [id, setId]);
 
   const updateProfile = (data) => {
-    setupdateDetails(data)
+    setupdateDetails(data);
   };
   React.useEffect(() => {
     if (profile.data == undefined) {
@@ -192,7 +200,7 @@ function TablePage(props) {
 
   const onSubmit = async (data) => {
     const file = report;
-    if (report!="" && Profile != "") {
+    if (report != "" && Profile != "") {
       if (
         Profile.name.split(".").pop().search("pdf") === 0 ||
         Profile.name.split(".").pop().search("docx") === 0
@@ -242,14 +250,14 @@ function TablePage(props) {
     }
     setOpen(false);
     setReport("");
-    setFileNotFound(false)
+    setFileNotFound(false);
     previewImage("");
     reset();
   };
 
   const handleClickOpen = () => {
     setReport("");
-    setFileNotFound(false)
+    setFileNotFound(false);
     previewImage("");
     reset();
     setOpen(true);
@@ -383,14 +391,14 @@ function TablePage(props) {
     setEditModal(value);
   };
 
-  const deleteModal = (value) =>{
-    console.log(value)
-    setId(value)
-  }
+  const deleteModal = (value) => {
+    console.log(value);
+    setId(value);
+  };
 
-  const logout = () =>{
-    localStorage.clear()
-  }
+  const logout = () => {
+    localStorage.clear();
+  };
 
   // const downloadPDF =() =>{
   //   const linkSource = `data:application/docx;base64,${record}`;
@@ -537,7 +545,10 @@ function TablePage(props) {
                     onClick={() => editModal(row)}
                     style={{ color: "blue", cursor: "pointer" }}
                   />{" "}
-                  <HighlightOff  onClick={() => deleteModal(row.profileId)} style={{ color: "red", cursor: "pointer" }} />
+                  <HighlightOff
+                    onClick={() => deleteModal(row.profileId)}
+                    style={{ color: "red", cursor: "pointer" }}
+                  />
                 </StyledTableCell>
               </StyledTableRow>
             ))}
@@ -771,7 +782,7 @@ function TablePage(props) {
               </div>
 
               <Box>
-              <input
+                <input
                   id="file"
                   name="file"
                   type="file"
@@ -779,7 +790,8 @@ function TablePage(props) {
                   style={customStyles}
                   ref={hiddenFileInput2}
                   onChange={handleFileChange}
-                  className="form-control"/>
+                  className="form-control"
+                />
                 <label htmlFor="file-input">
                   <Button
                     variant="contained"
@@ -800,7 +812,7 @@ function TablePage(props) {
                 ) : (
                   ""
                 )}
-                {report !="" ? (
+                {report != "" ? (
                   <p className="h4" className={classes.fileUploaded}>
                     File Uploaded
                   </p>

@@ -129,7 +129,7 @@ export default function ProfileEdit(props) {
         DocName: profileData?.DocName,
         Gender: gender,
         skills: state,
-        profileId:profileData?.profileId
+        profileId: profileData?.profileId,
       });
     } else if (report.length && Profile != "") {
       if (
@@ -171,7 +171,7 @@ export default function ProfileEdit(props) {
           docName: file.name,
           Gender: gender,
           skills: state,
-          profileId:profileData?.profileId
+          profileId: profileData?.profileId,
         });
       }
     } else {

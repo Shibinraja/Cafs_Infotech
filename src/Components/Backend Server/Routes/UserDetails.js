@@ -6,7 +6,6 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const crypto = require("crypto");
 
-
 // app.use(BodyParser.urlencoded({ extended: false }))
 // app.use(BodyParser.json())
 
@@ -23,15 +22,15 @@ router.post("/registration", (req, res) => {
     }
     console.log("Connected...");
     bcrypt.hash(req.body.register.password, saltRounds, function (err, hash) {
-      const id = crypto.randomBytes(16).toString("hex")
-    
+      const id = crypto.randomBytes(16).toString("hex");
+
       Details = [
         {
           Name: req.body.register.username,
           Email: req.body.register.email,
           DOB: req.body.register.DOB,
           Password: hash,
-          profileId:id
+          profileId: id,
         },
       ];
 
@@ -84,9 +83,5 @@ router.post("/login", (req, res) => {
     client.close();
   });
 });
-
-// router.get('/registration' , (req,res)=>{
-//     res.send({data:"HI how are you"})
-// })
 
 module.exports = router;
