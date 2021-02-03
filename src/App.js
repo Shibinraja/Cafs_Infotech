@@ -20,7 +20,7 @@ export default function App() {
   const userDetails = (data) => {
     if (data.data) {
       axios
-        .post("http://localhost:3535/login", { ...data })
+        .post("/login", { ...data })
         .then((res) => {
           console.log(res)
           localStorage.setItem("name", res.data.Name);
@@ -29,7 +29,7 @@ export default function App() {
         .catch((error) => console.log(error));
     } else {
       axios
-        .post("http://localhost:3535/registration", { ...data })
+        .post("/registration", { ...data })
         .then((res) => {
           setState(res.data);
         })
@@ -40,7 +40,7 @@ export default function App() {
   const profileDetails = (data) => {
     if (data) {
       axios
-        .post("http://localhost:3535/profilecreation", { ...data })
+        .post("/profilecreation", { ...data })
         .then((res) => {
           setState(res.data);
         })
@@ -50,7 +50,7 @@ export default function App() {
 
   const profileFetch = () => {
     axios
-      .get("http://localhost:3535/profilefetch")
+      .get("/profilefetch")
       .then((res) => {
         console.log(res);
         setData(res);
@@ -61,7 +61,7 @@ export default function App() {
   const updateProfile = (data) => {
     if (data) {
       axios
-        .put("http://localhost:3535/profileupdate", { ...data })
+        .put("/profileupdate", { ...data })
         .then((res) => {
           setState(res.data);
         })
@@ -72,7 +72,7 @@ export default function App() {
   const deleteprofile = (data) => {
     console.log(data);
     axios
-      .delete("http://localhost:3535/profiledelete", { data })
+      .delete("/profiledelete", { data })
       .then((res) => {
         setDeleteStatus(res.data);
       })
