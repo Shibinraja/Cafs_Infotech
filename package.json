@@ -31,9 +31,7 @@
     "build": "node ./node_modules/react-scripts/bin/react-scripts.js build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "chmod +x ./env.sh && ./env.sh && mv env-config.js ./public/ && react-scripts",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build"
-
+    "dev": "chmod +x ./env.sh && ./env.sh && mv env-config.js ./public/ && react-scripts"
   },
   "eslintConfig": {
     "extends": [
@@ -41,11 +39,7 @@
       "react-app/jest"
     ]
   },
-  "engines": {
-    "node": "15.4.0"
-},
   "proxy": "http://localhost:8080",
-  
   "browserslist": {
     "production": [
       ">0.2%",
