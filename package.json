@@ -27,7 +27,7 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "node Components/Backend Server/server.js",
+    "start": "node src/Components/BackendServer/server.js",
     "build": "node ./node_modules/react-scripts/bin/react-scripts.js build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -45,6 +45,7 @@
     "node": "15.4.0"
 },
   "proxy": "http://localhost:8080",
+  
   "browserslist": {
     "production": [
       ">0.2%",
