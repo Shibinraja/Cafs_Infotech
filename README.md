@@ -4,6 +4,19 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+## Available Scripts
+Make sure you have Nodejs and npm installed.
+
+clone this repo (https://github.com/Shibinraja/deploy-Urlshorten.git)
+
+Enter into cloned directory.
+
+Type yarn or npm install.
+
+Run Urlserver.js to make the server run by directing to the directory path.
+
+Enter your desired link and generate the short one.
+
 In the project directory, you can run:
 
 ### `yarn start`
