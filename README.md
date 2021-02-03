@@ -4,6 +4,17 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+## Available Scripts
+Make sure you have Nodejs and npm installed.
+
+clone this repo (https://github.com/Shibinraja/Cafs_Infotech.git)
+
+Root into cloned directory.
+
+Type yarn or npm install.
+
+Run Components/BackendServer/server.js to make the server run by directing to the directory path.
+
 In the project directory, you can run:
 
 ### `yarn start`
