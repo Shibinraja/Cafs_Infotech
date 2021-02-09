@@ -13,7 +13,7 @@ Root into cloned directory.
 
 Type yarn or npm install.
 
-Run Components/BackendServer/server.js to make the server run by directing to the directory path.
+Run  node server.js from Components/BackendServer/server.js to make the server run by directing to the directory path.
 
 In the project directory, you can run:
 
