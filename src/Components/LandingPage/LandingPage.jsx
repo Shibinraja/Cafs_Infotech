@@ -5,7 +5,7 @@ import icon from "../../Images/undraw_profile_pic_ic5t.svg";
 import { useForm } from "react-hook-form";
 import RegisterForm from "./RegisterForm";
 import Button from "@material-ui/core/Button";
-import Snackbar from "@material-ui/core/Snackbar";
+import SnackbarAlert from "../Snack/SnackbarAlert";
 import MuiAlert from "@material-ui/lab/Alert";
 
 function Alert(props) {
@@ -18,14 +18,40 @@ function LandingPage(props) {
   const [registerData, setRegisterData] = useState(null);
   const [login, setLogin] = useState(null);
   const [open, setOpen] = React.useState(false);
+  const [multiButton, setmultiButton] = React.useState(false);
+  const [alertType, setAlertType] = React.useState("");
+  const [snackBarMessage, setSnackBarMessage] = React.useState("");
+  const [isSnackBarOpen, setOpenSnackBar] = React.useState(false);
 
   React.useEffect(() => {
     if (data !== "") {
       setOpen(true);
     }
 
-    if (data.Message == "Login Successful") {
+    // if (data.Message == "Login Successful") {
+    //   window.location.href = "/table";
+    // }
+    if(data.statusCode === 501){
+      setOpenSnackBar(true);
+      setSnackBarMessage("Oops! Account not found");
+      setmultiButton(false);
+      setAlertType("error");
+    }else if(data.statusCode == 200){
       window.location.href = "/table";
+      setOpenSnackBar(true);
+      setSnackBarMessage("Login Successfull");
+      setmultiButton(false);
+      setAlertType("success");
+    }else if (data.statusCode == 201){
+      setOpenSnackBar(true);
+      setSnackBarMessage("Your Account has been registered Successfully");
+      setmultiButton(false);
+      setAlertType("success");
+    }else if (data.statusCode == 404) {
+      setOpenSnackBar(true);
+      setSnackBarMessage(" Oops ! Error due to some technical issues");
+      setmultiButton(false);
+      setAlertType("error");
     }
   }, [data]);
 
@@ -49,33 +75,20 @@ function LandingPage(props) {
     loginDetails({ register: register });
   };
 
+  const hideSnackBar = () => {
+    setOpenSnackBar(false);
+  };
+
   return (
     <div className="container-fluid">
-      {data.Message == "Login Successful" ? (
-        data.statusCode == 200 ? (
-          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-            <Alert severity="success">LoggedIn Successful</Alert>
-          </Snackbar>
-        ) : (
-          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-            <Alert severity="error">
-              Please,Verify your email Id and password
-            </Alert>
-          </Snackbar>
-        )
-      ) : data.statusCode == 200 ? (
-        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-          <Alert severity="success">
-            Your Account has been registered Successfully
-          </Alert>
-        </Snackbar>
-      ) : (
-        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-          <Alert severity="error">
-            Oops ! Error due to some technical issues
-          </Alert>
-        </Snackbar>
-      )}
+
+<SnackbarAlert
+        isOpen={isSnackBarOpen}
+        message={snackBarMessage}
+        alertType={alertType}
+        multibutton={multiButton}
+        primaryClick={hideSnackBar}
+      />
       <div className="row no-gutter">
         <div className="col-md-6 d-none d-md-flex bg-image"></div>
         <div className="col-md-6 bg-light">

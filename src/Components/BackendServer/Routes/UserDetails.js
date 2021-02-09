@@ -39,7 +39,7 @@ router.post("/registration", (req, res) => {
         if (err) throw err;
         res.json({
           Message: "Profile Created Successfully",
-          statusCode: 200,
+          statusCode: 201,
         });
         return;
       });
@@ -59,6 +59,12 @@ router.post("/login", (req, res) => {
 
     const db = client.db("Cafs-Infotech");
     db.collection("Registration").findOne(Email, function (err, result) {
+     if(result == null){
+      res.json({
+        Message: "Login Failed",
+        statusCode: 501,
+      });
+     }else{
       bcrypt.compare(
         req.body.data.password,
         result.Password,
@@ -78,7 +84,8 @@ router.post("/login", (req, res) => {
             });
           }
         }
-      );
+      )
+     }
     });
     client.close();
   });
